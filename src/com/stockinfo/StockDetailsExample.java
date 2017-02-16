@@ -26,12 +26,14 @@ public class StockDetailsExample {
 		IFileWriter fileWriter = new FileWriterImpl(Keys.OUTPUT_CSV);
 		
 		StockDetailsService si = new StockDetailsService(fileReader,stockReader,fileWriter);
-		si.processSymbolList();
-
-		long timeRequired = (System.currentTimeMillis()-startTime)/1000;
-		String totalTimeMsg = "Stock processing completed."+"\nTotal Time required is '"+timeRequired+"' seconds";
-		System.out.println(totalTimeMsg);
+		boolean isFromCache = si.processSymbolList();
 		
+		String totalTimeMsg = "Generated Stock details from cache.";
+		if(!isFromCache){
+			long timeRequired = (System.currentTimeMillis()-startTime)/1000;
+			totalTimeMsg = "Stock processing completed."+"\nTotal Time required is '"+timeRequired+"' seconds";
+			System.out.println(totalTimeMsg);
+		}
 		JOptionPane.showMessageDialog(null, totalTimeMsg);
 	}
 }

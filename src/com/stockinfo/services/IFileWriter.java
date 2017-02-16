@@ -14,5 +14,5 @@ import com.stockinfo.entities.Stock;
 public interface IFileWriter {
 
 	void writeStockDetailsIntoCSV(List<Stock> stockDetailsList);
-
+	boolean isFileCached();
 }

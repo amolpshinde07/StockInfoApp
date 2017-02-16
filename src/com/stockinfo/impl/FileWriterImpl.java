@@ -3,6 +3,7 @@
  */
 package com.stockinfo.impl;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -49,6 +50,22 @@ public class FileWriterImpl implements IFileWriter {
 				}
 			}
 		}
+	}
+	@Override
+	public boolean isFileCached() {
+		File file = new File(getOutputCsv());
+		if(!file.exists()){
+			return false;
+		}
+		long lastModified = file.lastModified();
+		long currentTimeMillis = System.currentTimeMillis();
+		long gap = currentTimeMillis-lastModified;
+
+		if(gap<60000 && file.exists()){
+			return true;
+		}
+		
+		return false;
 	}
 
 	public String getOutputCsv() {
