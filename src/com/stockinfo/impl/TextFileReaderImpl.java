@@ -18,6 +18,9 @@ public class TextFileReaderImpl implements IFileReader{
 	public TextFileReaderImpl(String inputFile) {
 		this.setInputFile(inputFile);
 	}
+	/* (non-Javadoc)
+	 * @see com.stockinfo.services.IFileReader#getListOfSymbolsFromFile()
+	 */
 	@Override
 	public List<String> getListOfSymbolsFromFile() {
 		try {

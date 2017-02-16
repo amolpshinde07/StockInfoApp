@@ -13,6 +13,14 @@ import com.stockinfo.entities.Stock;
  */
 public interface IFileWriter {
 
+	/**
+	 * It writes all stock details into csv file
+	 * @param stockDetailsList
+	 */
 	void writeStockDetailsIntoCSV(List<Stock> stockDetailsList);
+	/**
+	 * It checks whether data is already cached and its not expired
+	 * @return 
+	 */
 	boolean isFileCached();
 }

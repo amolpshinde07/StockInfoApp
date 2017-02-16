@@ -26,11 +26,14 @@ public class FileWriterImpl implements IFileWriter {
 		this.setOutputCsv(outputCsv);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.stockinfo.services.IFileWriter#writeStockDetailsIntoCSV(java.util.List)
+	 */
 	@Override
 	public void writeStockDetailsIntoCSV(List<Stock> stockDetailsList) {
 		try {
 			FileWriter writer = new FileWriter(getOutputCsv());
-			writeEachStockDetails(writer, stockDetailsList);
+			writeStockDetails(writer, stockDetailsList);
 			writer.flush();
 			writer.close();
 		} catch (IOException e) {
@@ -38,7 +41,13 @@ public class FileWriterImpl implements IFileWriter {
 		}
 		
 	}
-	public void writeEachStockDetails(Writer writer, List<Stock> stockDetailsList) throws IOException {
+	/**
+	 * It writes stock details into csv file
+	 * @param writer
+	 * @param stockDetailsList
+	 * @throws IOException
+	 */
+	public void writeStockDetails(Writer writer, List<Stock> stockDetailsList) throws IOException {
 		StockUtil.addCSVHeader(writer);
 		if(stockDetailsList!=null){
 			for (Stock eachStock : stockDetailsList) {
@@ -51,6 +60,9 @@ public class FileWriterImpl implements IFileWriter {
 			}
 		}
 	}
+	/* (non-Javadoc)
+	 * @see com.stockinfo.services.IFileWriter#isFileCached()
+	 */
 	@Override
 	public boolean isFileCached() {
 		File file = new File(getOutputCsv());

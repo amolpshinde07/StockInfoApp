@@ -15,6 +15,7 @@ public class StockUtil {
 		
 	}
 	/**
+	 * It converts JSONObject value for provided key into string
 	 * @param quoteObj
 	 * @param key TODO
 	 * @return
@@ -24,6 +25,7 @@ public class StockUtil {
 		return obj==null?null:String.valueOf(obj);
 	}
 	/**
+	 * It return JSONObject for provied Key
 	 * @param json
 	 * @param key TODO
 	 * @return 
@@ -36,6 +38,7 @@ public class StockUtil {
 		return null;
 	}
 	/**
+	 * It adds csv header into csv file
 	 * @param writer
 	 * @throws IOException
 	 */
@@ -45,6 +48,10 @@ public class StockUtil {
 		sb.append(Keys.NEW_LINE);
 		writer.append(sb.toString());
 	}
+	/**Replaces back slash with apropriate char
+	 * @param value
+	 * @return
+	 */
 	public static String replaceCSVChar(String value) {
 		if (value.contains(Keys.BACK_SLASH)) {
 			value = value.replace(Keys.BACK_SLASH, Keys.BACK_SLASH_SEPARATOR);

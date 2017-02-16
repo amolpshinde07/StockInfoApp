@@ -11,6 +11,10 @@ import java.util.List;
  */
 public interface IFileReader {
 
+	/**
+	 * It reads symbols from stock.txt
+	 * @return
+	 */
 	List<String> getListOfSymbolsFromFile();
 
 }

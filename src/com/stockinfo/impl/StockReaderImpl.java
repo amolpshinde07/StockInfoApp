@@ -50,7 +50,6 @@ public class StockReaderImpl implements IStockReader {
 			}
 		};
 		symbolList.stream().parallel().forEach(action);
-//		System.out.println("Time required to fetch all stocks is '"+(totalOnlyQueryTime/1000)+"' Second");
 		return stockDetailsList;
 	}
 	/* (non-Javadoc)
@@ -81,14 +80,11 @@ public class StockReaderImpl implements IStockReader {
 			return null;
 		}
 	}
-	/**
-	 * @param symbol
-	 * @param urlWithSymbolAsParameter TODO
-	 * @return
-	 * @throws MalformedURLException
-	 * @throws IOException
-	 * @throws ParseException 
+	
+	/* (non-Javadoc)
+	 * @see com.stockinfo.services.IStockReader#getStockJSON(java.lang.String)
 	 */
+	@Override
 	public JSONObject getStockJSON(String symbol) throws MalformedURLException, IOException, ParseException {
 //		long startTime = System.currentTimeMillis();
 
@@ -101,16 +97,19 @@ public class StockReaderImpl implements IStockReader {
 		reader.close();
 		inputStream.close();
 
-//		long eachQueryTime = System.currentTimeMillis()-startTime;
-//		System.out.println("Each query time required [getStockJSON]"+(eachQueryTime));
-
 		JSONParser parser = new JSONParser(); 
 		return (JSONObject) parser.parse(responseLine);
 	}
 	
+	/**
+	 * Extra method to read stock from provided url using HttpURLConnection
+	 * @param symbol
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public JSONObject getStockJSONHttpURLConnection(String symbol) throws MalformedURLException, IOException, ParseException {
-//		long startTime = System.currentTimeMillis();
-
 		String urlStr = java.text.MessageFormat.format(getUrlWithSymbolAsParameter(),new Object[]{symbol});
 		URL obj = new URL(urlStr);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -125,11 +124,7 @@ public class StockReaderImpl implements IStockReader {
 			response.append(inputLine);
 		}
 		in.close();
-		
 	    
-//		long eachQueryTime = System.currentTimeMillis()-startTime;
-//		System.out.println("Each query time required [getStockJSON2] "+(eachQueryTime));
-
 		JSONParser parser = new JSONParser(); 
 		return (JSONObject) parser.parse(response.toString());
 	}
