@@ -36,7 +36,7 @@ public class StockDetailsService {
 		if(!this.getFileWriter().isFileCached()){
 			this.setSymbolList(this.getFileReader().getListOfSymbolsFromFile());
 			this.setStockDetailsList(this.getStockReader().getStockList(getSymbolList()));
-			this.getFileWriter().writeStockDetailsIntoCSV(getStockDetailsList());
+			this.getFileWriter().writeStockDetails(getStockDetailsList());
 			return false;
 		}
 		return true;
