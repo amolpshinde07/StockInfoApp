@@ -30,7 +30,7 @@ public class FileWriterImpl implements IFileWriter {
 	 * @see com.stockinfo.services.IFileWriter#writeStockDetailsIntoCSV(java.util.List)
 	 */
 	@Override
-	public void writeStockDetailsIntoCSV(List<Stock> stockDetailsList) {
+	public void writeStockDetails(List<Stock> stockDetailsList) {
 		try {
 			FileWriter writer = new FileWriter(getOutputCsv());
 			writeStockDetails(writer, stockDetailsList);
